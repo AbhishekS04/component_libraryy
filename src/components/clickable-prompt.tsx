@@ -6,9 +6,10 @@ import { cn } from "@/lib/utils"
 
 interface ClickablePromptProps {
     value: string
+    onCopied?: () => void
 }
 
-export function ClickablePrompt({ value }: ClickablePromptProps) {
+export function ClickablePrompt({ value, onCopied }: ClickablePromptProps) {
     const [hasCopied, setHasCopied] = React.useState(false)
 
     React.useEffect(() => {
@@ -23,6 +24,7 @@ export function ClickablePrompt({ value }: ClickablePromptProps) {
     const handleCopy = () => {
         navigator.clipboard.writeText(value)
         setHasCopied(true)
+        onCopied?.()
     }
 
     return (

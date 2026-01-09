@@ -1,15 +1,11 @@
 
 import { notFound } from "next/navigation"
-import fs from "fs"
-import path from "path"
 import Link from "next/link"
 import { getComponent, getAllComponents } from "@/../registry/lib/components"
-import { ComponentPreview } from "@/components/component-preview"
-import { ComponentCodeViewer } from "@/components/component-code-viewer"
 import { ComponentViewLayout } from "@/components/component-view-layout"
-import { CopyButton } from "@/components/copy-button"
-import { ClickablePrompt } from "@/components/clickable-prompt"
 import { codeToHtml } from 'shiki'
+import { InstallationCard } from "./installation-card"
+import { AiPromptCard } from "./ai-prompt-card"
 
 interface ComponentPageProps {
     params: Promise<{
@@ -31,10 +27,6 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
     if (!component) {
         notFound()
     }
-
-    // Read globals.css for preview
-    const cssPath = path.join(process.cwd(), "src/app/globals.css")
-    const css = await fs.promises.readFile(cssPath, "utf-8")
 
     // Prepare files for Code Viewer
     const codeFiles = await Promise.all(component.files.map(async (file) => ({
@@ -86,36 +78,13 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
                     <div className="lg:col-span-4 space-y-6">
 
                         {/* Installation */}
-                        <div className="rounded-xl border border-zinc-800 bg-black overflow-hidden">
-                            <div className="p-4 border-b border-zinc-800 flex items-center gap-2">
-                                <div className="p-1.5 rounded-md bg-zinc-900 text-zinc-400">
-                                    <span className="material-symbols-outlined text-sm">terminal</span>
-                                </div>
-                                <h3 className="font-medium text-sm text-zinc-200">Installation</h3>
-                            </div>
-                            <div className="p-4">
-                                <div className="relative flex items-center justify-between gap-2 p-3 rounded-lg bg-zinc-900 border border-zinc-800/50 font-mono text-xs text-zinc-300">
-                                    <div className="flex bg-transparent w-full overflow-hidden">
-                                        <span className="text-zinc-600 mr-2 select-none">$</span>
-                                        <span className="truncate">npx shadcn@latest add {process.env.NEXT_PUBLIC_APP_URL}/r/{component.slug}</span>
-                                    </div>
-                                    <CopyButton value={`npx shadcn@latest add ${process.env.NEXT_PUBLIC_APP_URL}/r/${component.slug}`} className="text-zinc-500 hover:text-white transition-colors" />
-                                </div>
-                            </div>
-                        </div>
+                        <InstallationCard
+                            commandText={`npx shadcn@latest add ${process.env.NEXT_PUBLIC_APP_URL}/r/${component.slug}`}
+                            copyValue={`npx shadcn@latest add ${process.env.NEXT_PUBLIC_APP_URL}/r/${component.slug}`}
+                        />
 
                         {/* AI Prompt */}
-                        <div className="rounded-xl border border-zinc-800 bg-black overflow-hidden">
-                            <div className="p-4 border-b border-zinc-800 flex items-center gap-2">
-                                <div className="p-1.5 rounded-md bg-zinc-900 text-zinc-400">
-                                    <span className="material-symbols-outlined text-sm">auto_awesome</span>
-                                </div>
-                                <h3 className="font-medium text-sm text-zinc-200">AI Prompt</h3>
-                            </div>
-                            <div className="p-4">
-                                <ClickablePrompt value={prompt} />
-                            </div>
-                        </div>
+                        <AiPromptCard prompt={prompt} />
 
 
                         {/* Dependencies */}

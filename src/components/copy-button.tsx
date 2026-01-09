@@ -10,8 +10,10 @@ export function CopyButton({
     value,
     className,
     variant = "ghost",
+    onCopied,
+    onClick,
     ...props
-}: ButtonProps & { value: string }) {
+}: ButtonProps & { value: string; onCopied?: () => void }) {
     const [hasCopied, setHasCopied] = React.useState(false)
 
     React.useEffect(() => {
@@ -25,9 +27,11 @@ export function CopyButton({
             size="icon"
             variant={variant}
             className={cn("relative z-10 h-6 w-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 [&_svg]:h-3 [&_svg]:w-3", className)}
-            onClick={() => {
+            onClick={(event) => {
                 navigator.clipboard.writeText(value)
                 setHasCopied(true)
+                onCopied?.()
+                onClick?.(event)
             }}
             {...props}
         >
