@@ -51,9 +51,6 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
 
     return (
         <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-zinc-900 dark:text-zinc-100 transition-colors duration-200">
-            {/* Top Navigation Bar */}
-
-
             <main className="max-w-[1400px] mx-auto px-4 sm:px-6 py-8">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 mb-6 text-sm font-medium">
@@ -100,9 +97,9 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
                                 <div className="relative flex items-center justify-between gap-2 p-3 rounded-lg bg-zinc-900 border border-zinc-800/50 font-mono text-xs text-zinc-300">
                                     <div className="flex bg-transparent w-full overflow-hidden">
                                         <span className="text-zinc-600 mr-2 select-none">$</span>
-                                        <span>npx ui-add {component.slug}</span>
+                                        <span className="truncate">npx shadcn@latest add {process.env.NEXT_PUBLIC_APP_URL}/r/{component.slug}</span>
                                     </div>
-                                    <CopyButton value={`npx ui-add ${component.slug}`} className="text-zinc-500 hover:text-white transition-colors" />
+                                    <CopyButton value={`npx shadcn@latest add ${process.env.NEXT_PUBLIC_APP_URL}/r/${component.slug}`} className="text-zinc-500 hover:text-white transition-colors" />
                                 </div>
                             </div>
                         </div>
@@ -119,6 +116,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
                                 <ClickablePrompt value={prompt} />
                             </div>
                         </div>
+
 
                         {/* Dependencies */}
                         <div className="rounded-xl border border-zinc-800 bg-black overflow-hidden">
@@ -145,6 +143,40 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
                                 </div>
                             </div>
                         </div>
+
+                        {/* Credits */}
+                        {component.credits && component.credits.length > 0 && (
+                            <div className="rounded-xl border border-zinc-800 bg-black overflow-hidden">
+                                <div className="p-4 border-b border-zinc-800 flex items-center gap-2">
+                                    <div className="p-1.5 rounded-md bg-zinc-900 text-zinc-400">
+                                        <span className="material-symbols-outlined text-sm">favorite</span>
+                                    </div>
+                                    <h3 className="font-medium text-sm text-zinc-200">Credits</h3>
+                                </div>
+                                <div className="p-4">
+                                    <p className="text-xs text-zinc-500 mb-4">
+                                        This component was inspired by or adapted from the following sources:
+                                    </p>
+                                    <div className="space-y-3">
+                                        {component.credits.map((credit, i) => (
+                                            <div key={i} className="flex items-center justify-between">
+                                                <span className="text-sm font-medium text-zinc-300">{credit.name}</span>
+                                                {credit.url && (
+                                                    <a
+                                                        href={credit.url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="text-xs text-zinc-500 hover:text-white flex items-center gap-1 transition-colors"
+                                                    >
+                                                        Source <span className="material-symbols-outlined text-[10px]">open_in_new</span>
+                                                    </a>
+                                                )}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </main>

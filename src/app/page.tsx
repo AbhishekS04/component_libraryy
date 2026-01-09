@@ -4,9 +4,6 @@ import Link from "next/link"
 export default function Home() {
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-zinc-950 dark:text-white selection:bg-primary/30">
-      {/* Top Navigation */}
-
-
       <main className="relative pt-16 bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:24px_24px] dark:bg-[radial-gradient(#27272a_1px,transparent_1px)]">
         {/* Hero Section */}
         <section className="max-w-7xl mx-auto px-6 pt-24 pb-20 relative">

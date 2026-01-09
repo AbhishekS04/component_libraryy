@@ -8,14 +8,22 @@ export interface ComponentFile {
     content: string
 }
 
+export interface ComponentCredit {
+    name: string
+    url?: string
+}
+
 export interface Component {
     slug: string
     name: string
     files: ComponentFile[]
     date: string
+    description?: string
+    category?: string
+    credits?: ComponentCredit[]
 }
 
-export async function getAllComponents(): Promise<{ slug: string, date: string }[]> {
+export async function getAllComponents(): Promise<{ slug: string, date: string, category?: string }[]> {
     if (!fs.existsSync(COMPONENTS_DIR)) {
         return []
     }
@@ -26,9 +34,24 @@ export async function getAllComponents(): Promise<{ slug: string, date: string }
             .map(async (slug) => {
                 const componentPath = path.join(COMPONENTS_DIR, slug)
                 const stat = await fs.promises.stat(componentPath)
+                let category: string | undefined
+
+                // Try to read meta.json for category
+                const metaPath = path.join(componentPath, "meta.json")
+                if (fs.existsSync(metaPath)) {
+                    try {
+                        const metaContent = await fs.promises.readFile(metaPath, "utf-8")
+                        const meta = JSON.parse(metaContent)
+                        category = meta.category
+                    } catch (e) {
+                        // ignore error
+                    }
+                }
+
                 return {
                     slug,
-                    date: stat.birthtime.toISOString()
+                    date: stat.birthtime.toISOString(),
+                    category
                 }
             })
     )
@@ -44,6 +67,18 @@ export async function getComponent(slug: string): Promise<Component | null> {
 
     const stat = await fs.promises.stat(componentPath)
     let files: ComponentFile[] = []
+    let meta: Partial<Component> = {}
+
+    // Try to read meta.json
+    const metaPath = path.join(componentPath, "meta.json")
+    if (fs.existsSync(metaPath)) {
+        try {
+            const metaContent = await fs.promises.readFile(metaPath, "utf-8")
+            meta = JSON.parse(metaContent)
+        } catch (e) {
+            console.error(`Failed to parse meta.json for ${slug}`, e)
+        }
+    }
 
     if (stat.isDirectory()) {
         files = await getFilesRecursively(componentPath, "")
@@ -56,11 +91,17 @@ export async function getComponent(slug: string): Promise<Component | null> {
         })
     }
 
+    // Filter out meta.json from files list so it's not shown in code viewer
+    files = files.filter(f => f.path !== "meta.json")
+
     return {
         slug,
-        name: slug,
+        name: meta.name || slug,
         files,
-        date: stat.birthtime.toISOString()
+        date: stat.birthtime.toISOString(),
+        description: meta.description,
+        category: meta.category,
+        credits: meta.credits
     }
 }
 
