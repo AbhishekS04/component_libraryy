@@ -212,7 +212,7 @@ export default function Home() {
               Used by thousands of developers worldwide.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-4 relative z-10">
-              <button className="w-full sm:w-auto px-10 h-14 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-all text-lg">
+              <button className="w-full sm:w-auto px-10 h-14 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-all text-lg cursor-pointer">
                 Get Started Today
               </button>
               <button className="w-full sm:w-auto px-10 h-14 bg-zinc-950 text-white border border-zinc-800 font-bold rounded-xl hover:bg-zinc-800 transition-all text-lg">
