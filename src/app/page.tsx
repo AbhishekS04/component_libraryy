@@ -21,13 +21,13 @@ function TwitterAnimationLink({
 }: TwitterAnimationLinkProps) {
   return (
     <Link
-      className={`group inline-flex items-center justify-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${className ?? ""}`}
+      className={`group inline-flex items-center justify-center rounded-md cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${className ?? ""}`}
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={ariaLabel}
     >
-      <span className="inline-flex items-center justify-center leading-none transition-transform duration-300 ease-out will-change-transform group-hover:scale-125 group-hover:-rotate-6 group-active:scale-110">
+      <span className="inline-flex size-10 items-center justify-center leading-none transition-transform duration-300 ease-out will-change-transform group-hover:scale-125 group-hover:-rotate-6 group-active:scale-110">
         <UseAnimations
           animation={twitter}
           size={size}
@@ -268,11 +268,11 @@ export default function Home() {
             </p>
             <div className="flex items-center gap-6">
               <Link
-                className="group inline-flex items-center justify-center rounded-md text-zinc-600 hover:text-zinc-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="group inline-flex items-center justify-center rounded-md text-zinc-600 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 href="#"
                 aria-label="Email"
               >
-                <span className="inline-flex items-center justify-center leading-none transition-transform duration-300 ease-out will-change-transform group-hover:scale-125 group-hover:-rotate-6 group-active:scale-110">
+                <span className="inline-flex size-10 items-center justify-center leading-none transition-transform duration-300 ease-out will-change-transform group-hover:scale-125 group-hover:-rotate-6 group-active:scale-110">
                   <span className="material-symbols-outlined text-[35px] leading-none">alternate_email</span>
                 </span>
               </Link>
