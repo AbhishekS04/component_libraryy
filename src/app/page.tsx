@@ -1,5 +1,62 @@
+"use client"
+
+/* eslint-disable react/no-unescaped-entities */
 
 import Link from "next/link"
+import UseAnimations from "react-useanimations"
+import twitter from "react-useanimations/lib/twitter"
+
+type TwitterAnimationLinkProps = {
+  href?: string
+  className?: string
+  size?: number
+  ariaLabel?: string
+}
+
+function TwitterAnimationLink({
+  href = "https://twitter.com",
+  className,
+  size = 56,
+  ariaLabel = "Twitter",
+}: TwitterAnimationLinkProps) {
+  return (
+    <Link
+      className={`group inline-flex items-center justify-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${className ?? ""}`}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={ariaLabel}
+    >
+      <span className="inline-flex items-center justify-center leading-none transition-transform duration-300 ease-out will-change-transform group-hover:scale-125 group-hover:-rotate-6 group-active:scale-110">
+        <UseAnimations
+          animation={twitter}
+          size={size}
+          strokeColor="currentColor"
+          fillColor="currentColor"
+        />
+      </span>
+    </Link>
+  )
+}
+
+type FooterSocialProps = {
+  twitterHref?: string
+  className?: string
+}
+
+function FooterSocial({
+  twitterHref = "https://twitter.com",
+  className,
+}: FooterSocialProps) {
+  return (
+    <TwitterAnimationLink
+      href={twitterHref}
+      ariaLabel="Twitter"
+      size={35}
+      className={className}
+    />
+  )
+}
 
 export default function Home() {
   return (
@@ -7,7 +64,7 @@ export default function Home() {
       {/* Top Navigation */}
 
 
-      <main className="relative pt-16 bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:24px_24px] dark:bg-[radial-gradient(#27272a_1px,transparent_1px)]">
+      <main className="relative pt-16 bg-[radial-gradient(#27272a_1px,transparent_1px)] bg-size-[24px_24px] dark:bg-[radial-gradient(#27272a_1px,transparent_1px)]">
         {/* Hero Section */}
         <section className="max-w-7xl mx-auto px-6 pt-24 pb-20 relative">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-primary/5 blur-[120px] rounded-full -z-10"></div>
@@ -213,10 +270,16 @@ export default function Home() {
               © 2024 Shadcn AI. All rights reserved. Built with passion for developers.
             </p>
             <div className="flex items-center gap-6">
-              <Link className="text-zinc-600 hover:text-zinc-900 dark:hover:text-white transition-colors" href="#"><span className="material-symbols-outlined">alternate_email</span></Link>
-              <Link className="text-zinc-600 hover:text-zinc-900 dark:hover:text-white transition-colors" href="#">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.599 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+              <Link
+                className="group inline-flex items-center justify-center rounded-md text-zinc-600 hover:text-zinc-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                href="#"
+                aria-label="Email"
+              >
+                <span className="inline-flex items-center justify-center leading-none transition-transform duration-300 ease-out will-change-transform group-hover:scale-125 group-hover:-rotate-6 group-active:scale-110">
+                  <span className="material-symbols-outlined text-[35px] leading-none">alternate_email</span>
+                </span>
               </Link>
+              <FooterSocial className="text-zinc-600 hover:text-zinc-900 dark:hover:text-white transition-colors" />
             </div>
           </div>
         </div>
