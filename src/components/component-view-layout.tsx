@@ -23,28 +23,28 @@ export function ComponentViewLayout({ slug, codeFiles }: ComponentViewLayoutProp
         <Tabs defaultValue="preview" className="rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden bg-white dark:bg-zinc-950 shadow-sm">
             <div className="flex items-center justify-between px-4 py-3 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50">
                 <TabsList className="bg-zinc-200 dark:bg-zinc-800 p-1 rounded-lg h-auto">
-                    <TabsTrigger value="preview" className="px-3 py-1 rounded-md text-xs font-bold data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100 shadow-sm transition-all text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300">Preview</TabsTrigger>
-                    <TabsTrigger value="code" className="px-3 py-1 rounded-md text-xs font-bold data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100 shadow-sm transition-all text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300">Code</TabsTrigger>
+                    <TabsTrigger value="preview" className="px-3 py-1 rounded-md text-xs font-bold data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100 shadow-sm transition-all text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300 cursor-pointer">Preview</TabsTrigger>
+                    <TabsTrigger value="code" className="px-3 py-1 rounded-md text-xs font-bold data-[state=active]:bg-white dark:data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-900 dark:data-[state=active]:text-zinc-100 shadow-sm transition-all text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-300 cursor-pointer">Code</TabsTrigger>
                 </TabsList>
                 <div className="flex items-center gap-3 text-zinc-400">
                     <button
                         onClick={() => setViewMode("desktop")}
-                        className={cn("hover:text-primary transition-colors", viewMode === "desktop" && "text-primary")}
+                        className={cn("hover:text-primary transition-colors cursor-pointer", viewMode === "desktop" && "text-primary")}
                         title="Desktop view"
                     >
                         <span className="material-symbols-outlined text-xl">desktop_windows</span>
                     </button>
                     <button
                         onClick={() => setViewMode("mobile")}
-                        className={cn("hover:text-primary transition-colors", viewMode === "mobile" && "text-primary")}
+                        className={cn("hover:text-primary transition-colors cursor-pointer", viewMode === "mobile" && "text-primary")}
                         title="Mobile view"
                     >
                         <span className="material-symbols-outlined text-xl">smartphone</span>
                     </button>
-                    <div className="w-px h-4 bg-zinc-300 dark:bg-zinc-700 mx-1"></div>
+                    <div className="w-px h-4 bg-zinc-300 dark:bg-zinc-700 mx-1 "></div>
                     <button
                         onClick={() => setRestartKey(prev => prev + 1)}
-                        className="hover:text-primary transition-colors"
+                        className="hover:text-primary transition-colors cursor-pointer"
                         title="Restart preview"
                     >
                         <span className="material-symbols-outlined text-xl">refresh</span>
