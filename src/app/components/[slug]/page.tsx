@@ -190,9 +190,33 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
                     </div>
                     <p className="text-sm text-zinc-500">Built for developers by the community. Open source UI kits.</p>
                     <div className="flex gap-6">
-                        <Link className="text-zinc-400 hover:text-primary transition-colors" href="#"><span className="material-symbols-outlined">alternate_email</span></Link>
-                        <Link className="text-zinc-400 hover:text-primary transition-colors" href="#"><span className="material-symbols-outlined">public</span></Link>
-                        <Link className="text-zinc-400 hover:text-primary transition-colors" href="#"><span className="material-symbols-outlined">terminal</span></Link>
+                        <Link
+                            className="group inline-flex items-center justify-center rounded-md text-zinc-400 hover:text-primary transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                            href="#"
+                            aria-label="Email"
+                        >
+                            <span className="inline-flex items-center justify-center leading-none transition-transform duration-300 ease-out will-change-transform group-hover:scale-125 group-hover:-rotate-6 group-active:scale-110">
+                                <span className="material-symbols-outlined leading-none">alternate_email</span>
+                            </span>
+                        </Link>
+                        <Link
+                            className="group inline-flex items-center justify-center rounded-md text-zinc-400 hover:text-primary transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                            href="#"
+                            aria-label="Website"
+                        >
+                            <span className="inline-flex items-center justify-center leading-none transition-transform duration-300 ease-out will-change-transform group-hover:scale-125 group-hover:-rotate-6 group-active:scale-110">
+                                <span className="material-symbols-outlined leading-none">public</span>
+                            </span>
+                        </Link>
+                        <Link
+                            className="group inline-flex items-center justify-center rounded-md text-zinc-400 hover:text-primary transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                            href="#"
+                            aria-label="Terminal"
+                        >
+                            <span className="inline-flex items-center justify-center leading-none transition-transform duration-300 ease-out will-change-transform group-hover:scale-125 group-hover:-rotate-6 group-active:scale-110">
+                                <span className="material-symbols-outlined leading-none">terminal</span>
+                            </span>
+                        </Link>
                     </div>
                 </div>
             </footer>
