@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Component Library Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3c83f6",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#09090b",
+                        "zinc": {
+                            "950": "#09090b",
+                            "900": "#18181b",
+                            "800": "#27272a",
+                            "700": "#3f3f46",
+                            "400": "#a1a1aa",
+                        }
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "mono": ["JetBrains Mono", "monospace"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .dot-grid {
+            background-image: radial-gradient(#27272a 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            background-color: rgba(9, 9, 11, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-zinc-950 dark:text-white selection:bg-primary/30">
+<!-- Top Navigation -->
+<header class="fixed top-0 z-50 w-full border-b border-zinc-200 dark:border-zinc-800 glass-nav">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-2 text-white group" href="#">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined !text-[20px]">deployed_code</span>
+</div>
+<span class="text-lg font-bold tracking-tight">Shadcn AI</span>
+</a>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-zinc-400 hover:text-white transition-colors" href="#">Components</a>
+<a class="text-sm font-medium text-zinc-400 hover:text-white transition-colors" href="#">Docs</a>
+<a class="text-sm font-medium text-zinc-400 hover:text-white transition-colors" href="#">Blocks</a>
+<a class="text-sm font-medium text-zinc-400 hover:text-white transition-colors" href="#">Showcase</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex relative items-center">
+<span class="material-symbols-outlined absolute left-3 text-zinc-500 !text-[18px]">search</span>
+<input class="bg-zinc-900 border border-zinc-800 rounded-lg pl-10 pr-4 py-1.5 text-sm w-64 focus:ring-1 focus:ring-primary focus:border-primary transition-all text-white placeholder:text-zinc-500" placeholder="Search components..." type="text"/>
+</div>
+<a class="p-2 text-zinc-400 hover:text-white transition-colors" href="#">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.412-4.041-1.412-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg>
+</a>
+</div>
+</div>
+</header>
+<main class="relative pt-16 dot-grid">
+<!-- Hero Section -->
+<section class="max-w-7xl mx-auto px-6 pt-24 pb-20 relative">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-primary/5 blur-[120px] rounded-full -z-10"></div>
+<div class="flex flex-col items-center text-center gap-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold uppercase tracking-wider">
+<span class="flex h-2 w-2 rounded-full bg-primary animate-pulse"></span>
+                    Now Available: AI Charts v2.0
+                </div>
+<h1 class="text-white text-5xl md:text-7xl font-black leading-[1.1] tracking-[-0.04em] max-w-4xl">
+                    Beautiful components.<br/>
+                    One command. <span class="text-primary">Zero friction.</span>
+</h1>
+<p class="text-zinc-400 text-lg md:text-xl font-normal leading-relaxed max-w-2xl">
+                    The library for developers who care about code quality. Copy, paste, and ship with AI-powered UI components designed for performance.
+                </p>
+<div class="flex flex-wrap items-center justify-center gap-4 mt-4">
+<button class="flex items-center gap-2 h-12 px-8 bg-white text-black hover:bg-zinc-200 transition-all rounded-lg font-bold text-base">
+                        Browse Components
+                        <span class="material-symbols-outlined !text-[20px]">arrow_forward</span>
+</button>
+<button class="flex items-center gap-2 h-12 px-8 bg-zinc-900 text-white border border-zinc-800 hover:bg-zinc-800 transition-all rounded-lg font-bold text-base">
+                        View on GitHub
+                    </button>
+</div>
+</div>
+</section>
+<!-- Terminal Preview Section -->
+<section class="max-w-4xl mx-auto px-6 pb-32">
+<div class="relative group">
+<!-- Terminal Window -->
+<div class="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl">
+<div class="flex items-center justify-between px-4 py-3 bg-zinc-900/50 border-b border-zinc-800">
+<div class="flex gap-1.5">
+<div class="size-3 rounded-full bg-[#ff5f56]"></div>
+<div class="size-3 rounded-full bg-[#ffbd2e]"></div>
+<div class="size-3 rounded-full bg-[#27c93f]"></div>
+</div>
+<div class="text-[12px] font-mono text-zinc-500">bash — 80x24</div>
+<div class="w-12"></div>
+</div>
+<div class="p-6 font-mono text-sm leading-relaxed overflow-x-auto">
+<div class="flex gap-4">
+<span class="text-primary select-none">$</span>
+<span class="text-white">npx shadcn-ai@latest add button</span>
+</div>
+<div class="mt-4 text-zinc-500">
+<div class="flex gap-4">
+<span class="text-green-500 select-none">✔</span>
+<span>Found 1 component.</span>
+</div>
+<div class="flex gap-4 mt-1">
+<span class="text-blue-500 select-none">ℹ</span>
+<span>Installing dependencies: tailwindcss-animate, lucide-react...</span>
+</div>
+<div class="flex gap-4 mt-3">
+<span class="text-zinc-400 select-none"></span>
+<span class="text-zinc-400">Writing components/ui/button.tsx</span>
+</div>
+<div class="flex gap-4 mt-1">
+<span class="text-green-500 select-none">✔</span>
+<span class="text-zinc-100">Component installed successfully!</span>
+</div>
+</div>
+<div class="mt-6 flex gap-4">
+<span class="text-primary select-none">$</span>
+<span class="inline-block w-2 h-5 bg-primary animate-pulse"></span>
+</div>
+</div>
+</div>
+<!-- Subtle Gradient Glow -->
+<div class="absolute -inset-4 bg-primary/20 blur-2xl rounded-3xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+</div>
+<div class="mt-12 text-center">
+<div class="flex flex-col items-center gap-4">
+<p class="text-zinc-500 text-sm font-medium uppercase tracking-widest">Install with one command</p>
+<div class="flex items-center gap-2 p-1.5 pl-4 bg-zinc-900 border border-zinc-800 rounded-xl w-full max-w-md mx-auto">
+<code class="text-zinc-300 text-sm font-mono flex-1 text-left">npx shadcn-ai add button</code>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2">
+<span class="material-symbols-outlined !text-[18px]">content_copy</span>
+                            Copy
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section class="max-w-7xl mx-auto px-6 pb-32">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Feature 1 -->
+<div class="group p-8 bg-zinc-900/40 border border-zinc-800 hover:border-primary/50 rounded-2xl transition-all duration-300">
+<div class="size-12 rounded-xl bg-zinc-800 flex items-center justify-center text-white mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined !text-[28px]">terminal</span>
+</div>
+<h3 class="text-white text-xl font-bold mb-3">Native CLI</h3>
+<p class="text-zinc-400 leading-relaxed mb-6">
+                        Integrated directly into your workflow. No need to download zip files—just run the command and get the code.
+                    </p>
+<div class="font-mono text-[11px] px-2 py-1 bg-zinc-950 text-zinc-500 rounded border border-zinc-800 inline-block uppercase tracking-tighter">
+                        shadcn-ai init
+                    </div>
+</div>
+<!-- Feature 2 -->
+<div class="group p-8 bg-zinc-900/40 border border-zinc-800 hover:border-primary/50 rounded-2xl transition-all duration-300">
+<div class="size-12 rounded-xl bg-zinc-800 flex items-center justify-center text-white mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined !text-[28px]">lock_open</span>
+</div>
+<h3 class="text-white text-xl font-bold mb-3">Zero Lock-in</h3>
+<p class="text-zinc-400 leading-relaxed mb-6">
+                        It's your code. No hidden dependencies or heavy external packages. You own every pixel and every line.
+                    </p>
+<div class="font-mono text-[11px] px-2 py-1 bg-zinc-950 text-zinc-500 rounded border border-zinc-800 inline-block uppercase tracking-tighter">
+                        pure react &amp; tailwind
+                    </div>
+</div>
+<!-- Feature 3 -->
+<div class="group p-8 bg-zinc-900/40 border border-zinc-800 hover:border-primary/50 rounded-2xl transition-all duration-300">
+<div class="size-12 rounded-xl bg-zinc-800 flex items-center justify-center text-white mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined !text-[28px]">auto_awesome</span>
+</div>
+<h3 class="text-white text-xl font-bold mb-3">AI-Optimized</h3>
+<p class="text-zinc-400 leading-relaxed mb-6">
+                        Built with LLM-friendly structures. Our code is optimized for better prompting results with Cursor and v0.
+                    </p>
+<div class="font-mono text-[11px] px-2 py-1 bg-zinc-950 text-zinc-500 rounded border border-zinc-800 inline-block uppercase tracking-tighter">
+                        semantic structure
+                    </div>
+</div>
+</div>
+</section>
+<!-- CTA Showcase Section -->
+<section class="max-w-7xl mx-auto px-6 pb-40">
+<div class="relative rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 p-12 md:p-20 flex flex-col items-center text-center overflow-hidden">
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 blur-[120px] rounded-full"></div>
+<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary/10 blur-[120px] rounded-full"></div>
+<h2 class="text-white text-3xl md:text-5xl font-black mb-6 tracking-tight relative z-10">
+                    Ready to build your next big idea?
+                </h2>
+<p class="text-zinc-400 text-lg max-w-2xl mb-10 relative z-10">
+                    Start with a solid foundation of accessibility, responsiveness, and performance. 
+                    Used by thousands of developers worldwide.
+                </p>
+<div class="flex flex-col sm:flex-row items-center gap-4 relative z-10">
+<button class="w-full sm:w-auto px-10 h-14 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-all text-lg">
+                        Get Started Today
+                    </button>
+<button class="w-full sm:w-auto px-10 h-14 bg-zinc-950 text-white border border-zinc-800 font-bold rounded-xl hover:bg-zinc-800 transition-all text-lg">
+                        Read Documentation
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="border-t border-zinc-800 bg-zinc-950 py-20">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-20">
+<div class="col-span-2 md:col-span-1">
+<div class="flex items-center gap-2 text-white mb-6">
+<div class="size-6 bg-primary rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined !text-[16px]">deployed_code</span>
+</div>
+<span class="text-lg font-bold">Shadcn AI</span>
+</div>
+<p class="text-zinc-500 text-sm leading-relaxed">
+                        The component library for the AI era. Beautifully designed, accessible, and ready for your production code.
+                    </p>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 text-sm">Product</h4>
+<ul class="space-y-4">
+<li><a class="text-zinc-500 hover:text-white transition-colors text-sm" href="#">Components</a></li>
+<li><a class="text-zinc-500 hover:text-white transition-colors text-sm" href="#">Templates</a></li>
+<li><a class="text-zinc-500 hover:text-white transition-colors text-sm" href="#">CLI</a></li>
+<li><a class="text-zinc-500 hover:text-white transition-colors text-sm" href="#">Changelog</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 text-sm">Resources</h4>
+<ul class="space-y-4">
+<li><a class="text-zinc-500 hover:text-white transition-colors text-sm" href="#">Documentation</a></li>
+<li><a class="text-zinc-500 hover:text-white transition-colors text-sm" href="#">API Reference</a></li>
+<li><a class="text-zinc-500 hover:text-white transition-colors text-sm" href="#">Community</a></li>
+<li><a class="text-zinc-500 hover:text-white transition-colors text-sm" href="#">GitHub</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 text-sm">Legal</h4>
+<ul class="space-y-4">
+<li><a class="text-zinc-500 hover:text-white transition-colors text-sm" href="#">Privacy</a></li>
+<li><a class="text-zinc-500 hover:text-white transition-colors text-sm" href="#">Terms</a></li>
+<li><a class="text-zinc-500 hover:text-white transition-colors text-sm" href="#">License</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-10 border-t border-zinc-900 flex flex-col md:flex-row items-center justify-between gap-6">
+<p class="text-zinc-600 text-[13px]">
+                    © 2024 Shadcn AI. All rights reserved. Built with passion for developers.
+                </p>
+<div class="flex items-center gap-6">
+<a class="text-zinc-600 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+<a class="text-zinc-600 hover:text-white transition-colors" href="#">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.599 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
