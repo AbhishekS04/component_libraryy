@@ -108,7 +108,7 @@ export default function Home() {
               <div className="p-6 font-mono text-sm leading-relaxed overflow-x-auto">
                 <div className="flex gap-4">
                   <span className="text-primary select-none">$</span>
-                  <span className="text-white">npx shadcn-ai@latest add button</span>
+                  <span className="text-white">npx shadcn@latest add {process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/r/button</span>
                 </div>
                 <div className="mt-4 text-zinc-500">
                   <div className="flex gap-4">
@@ -141,8 +141,13 @@ export default function Home() {
             <div className="flex flex-col items-center gap-4">
               <p className="text-zinc-500 text-sm font-medium uppercase tracking-widest">Install with one command</p>
               <div className="flex items-center gap-2 p-1.5 pl-4 bg-zinc-900 border border-zinc-800 rounded-xl w-full max-w-md mx-auto">
-                <code className="text-zinc-300 text-sm font-mono flex-1 text-left">npx shadcn-ai add button</code>
-                <button className="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2 cursor-pointer">
+                <code className="text-zinc-300 text-sm font-mono flex-1 text-left truncate">npx shadcn@latest add {process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/r/button</code>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(`npx shadcn@latest add ${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/r/button`)
+                  }}
+                  className="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2 cursor-pointer"
+                >
                   <span className="material-symbols-outlined !text-[18px]">content_copy</span>
                   Copy
                 </button>
