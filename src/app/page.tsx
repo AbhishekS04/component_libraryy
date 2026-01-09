@@ -145,7 +145,7 @@ export default function Home() {
               <p className="text-zinc-500 text-sm font-medium uppercase tracking-widest">Install with one command</p>
               <div className="flex items-center gap-2 p-1.5 pl-4 bg-zinc-900 border border-zinc-800 rounded-xl w-full max-w-md mx-auto">
                 <code className="text-zinc-300 text-sm font-mono flex-1 text-left">npx shadcn-ai add button</code>
-                <button className="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2">
+                <button className="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2 cursor-pointer">
                   <span className="material-symbols-outlined !text-[18px]">content_copy</span>
                   Copy
                 </button>
