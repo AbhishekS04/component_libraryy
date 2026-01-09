@@ -17,16 +17,22 @@ export function CopyButton({
     const [hasCopied, setHasCopied] = React.useState(false)
 
     React.useEffect(() => {
-        setTimeout(() => {
+        if (!hasCopied) return
+
+        const timeoutId = window.setTimeout(() => {
             setHasCopied(false)
         }, 2000)
+
+        return () => {
+            window.clearTimeout(timeoutId)
+        }
     }, [hasCopied])
 
     return (
         <Button
             size="icon"
             variant={variant}
-            className={cn("relative z-10 h-6 w-6 text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 [&_svg]:h-3 [&_svg]:w-3", className)}
+            className={cn("relative z-10 h-6 w-6 cursor-pointer text-zinc-50 hover:bg-zinc-700 hover:text-zinc-50 [&_svg]:h-3 [&_svg]:w-3", className)}
             onClick={(event) => {
                 navigator.clipboard.writeText(value)
                 setHasCopied(true)
@@ -36,7 +42,7 @@ export function CopyButton({
             {...props}
         >
             <span className="sr-only">Copy</span>
-            {hasCopied ? <Check /> : <Copy />}
+            {hasCopied ? <Check className="text-green-500" /> : <Copy />}
         </Button>
     )
 }
