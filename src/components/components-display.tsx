@@ -68,11 +68,11 @@ export function ComponentsDisplay({ components, selectedCategory }: ComponentsDi
                         <Link key={c.slug} href={`/components/${c.slug}`} className="block">
                             <div className={cn(
                                 "group relative flex bg-zinc-900 border border-zinc-800 rounded overflow-hidden hover:border-zinc-600 transition-all duration-200",
-                                viewMode === "grid" ? "flex-col" : "flex-row h-32"
+                                viewMode === "grid" ? "flex-col" : "flex-col sm:flex-row h-auto sm:h-32"
                             )}>
                                 <div className={cn(
                                     "bg-zinc-950 relative flex items-center justify-center border-zinc-800 overflow-hidden shrink-0",
-                                    viewMode === "grid" ? "h-48 border-b" : "w-48 border-r h-full"
+                                    viewMode === "grid" ? "h-48 border-b" : "h-48 w-full border-b sm:border-b-0 sm:w-48 sm:border-r sm:h-full"
                                 )}>
                                     {/* Component Preview in Card */}
                                     <div className="absolute inset-0 flex items-center justify-center p-4">
@@ -94,14 +94,9 @@ export function ComponentsDisplay({ components, selectedCategory }: ComponentsDi
                                 <div className="p-4 flex flex-col justify-center flex-1">
                                     <div className="flex items-center justify-between mb-2">
                                         <span className="font-mono text-[10px] tracking-tight uppercase text-primary">Component</span>
-                                        <span className="font-mono text-[10px] tracking-tight uppercase px-2 py-0.5 border border-zinc-800 text-zinc-400">Med</span>
                                     </div>
                                     <h3 className="text-sm font-bold text-white mb-1 capitalize">{c.slug.replace(/-/g, ' ')}</h3>
-                                    <p className="text-xs text-zinc-500 line-clamp-1 mb-4">A reusable {c.slug.replace(/-/g, ' ')} component.</p>
-                                    <div className="flex items-center gap-2">
-                                        <span className="font-mono text-[10px] tracking-tight uppercase text-zinc-500 bg-zinc-950 px-2 py-0.5 border border-zinc-800">React</span>
-                                        <span className="font-mono text-[10px] tracking-tight uppercase text-zinc-500 bg-zinc-950 px-2 py-0.5 border border-zinc-800">Tailwind</span>
-                                    </div>
+                                    <p className="text-xs text-zinc-500 line-clamp-1 mb-4">{c.date ? new Date(c.date).toLocaleDateString() : 'A reusable component.'}</p>
                                 </div>
                             </div>
                         </Link>

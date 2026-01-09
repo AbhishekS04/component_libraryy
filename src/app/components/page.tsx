@@ -4,10 +4,6 @@ import Link from "next/link"
 import { ComponentPreview } from "@/components/component-preview"
 import { ComponentsDisplay } from "@/components/components-display"
 
-const CATEGORY_MAP: Record<string, string> = {
-    "button": "Utility",
-    "social-stories": "Animations"
-}
 
 interface PageProps {
     searchParams: Promise<{
@@ -28,16 +24,14 @@ export default async function ComponentsPage(props: PageProps) {
     if (selectedCategory === "featured") {
         components = allComponentsMeta.filter(c => FEATURED_COMPONENTS.includes(c.slug))
     } else if (selectedCategory === "latest") {
-        // Already sorted by date in getAllComponents, just take top N? Or just show all sorted?
-        // Let's just show all sorted by date (which they are default)
         components = [...allComponentsMeta].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     } else if (selectedCategory) {
-        components = allComponentsMeta.filter(c => CATEGORY_MAP[c.slug] === selectedCategory)
+        components = allComponentsMeta.filter(c => c.category === selectedCategory)
     }
 
     // Calculate counts
     const counts = allComponentsMeta.reduce((acc, c) => {
-        const cat = CATEGORY_MAP[c.slug]
+        const cat = c.category
         if (cat) {
             acc[cat] = (acc[cat] || 0) + 1
         }
@@ -101,26 +95,12 @@ export default async function ComponentsPage(props: PageProps) {
                                 ))}
                             </div>
                         </div>
-                        <div className="pt-4 border-t border-zinc-800">
-                            <button className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded border border-zinc-800 text-xs font-mono text-zinc-300 hover:bg-zinc-900 transition-colors">
-                                <span className="material-symbols-outlined text-sm">content_copy</span>
-                                <span>Copy CLI Command</span>
-                            </button>
-                        </div>
                     </div>
                 </aside>
 
                 <main className="flex-1 py-8">
                     <ComponentsDisplay components={components} selectedCategory={selectedCategory} />
 
-                    <div className="mt-16 border-t border-zinc-800 pt-12 text-center pb-12">
-                        <h4 className="text-xl font-bold text-white mb-4">Can't find what you're looking for?</h4>
-                        <p className="text-zinc-500 mb-8 max-w-md mx-auto text-sm">We're constantly adding new components. Request a component or contribute to our library via PR.</p>
-                        <div className="flex items-center justify-center gap-4">
-                            <button className="px-6 py-2.5 bg-white text-zinc-950 text-xs font-mono font-bold rounded hover:bg-zinc-200 transition-colors">Request Component</button>
-                            <button className="px-6 py-2.5 border border-zinc-800 text-white text-xs font-mono font-bold rounded hover:bg-zinc-900 transition-colors">Submit PR</button>
-                        </div>
-                    </div>
                 </main>
             </div>
         </div>
