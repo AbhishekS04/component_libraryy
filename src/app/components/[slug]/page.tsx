@@ -52,34 +52,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
     return (
         <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-zinc-900 dark:text-zinc-100 transition-colors duration-200">
             {/* Top Navigation Bar */}
-            <header className="sticky top-0 z-50 w-full border-b border-zinc-200 dark:border-zinc-800 bg-background-light/80 dark:bg-zinc-950/80 backdrop-blur-md">
-                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-                    <div className="flex items-center gap-8">
-                        <Link href="/" className="flex items-center gap-2 text-primary font-bold text-xl tracking-tight">
-                            <div className="size-8 bg-primary rounded flex items-center justify-center text-white">
-                                <span className="material-symbols-outlined">auto_awesome</span>
-                            </div>
-                            <span>UI Forge</span>
-                        </Link>
-                        <nav className="hidden md:flex items-center gap-6">
-                            <Link className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary transition-colors" href="/components">Components</Link>
-                            <Link className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary transition-colors" href="#">Templates</Link>
-                            <Link className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary transition-colors" href="#">Showcase</Link>
-                            <Link className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-primary dark:hover:text-primary transition-colors" href="#">Docs</Link>
-                        </nav>
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <div className="relative hidden sm:block">
-                            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 text-sm">search</span>
-                            <input className="bg-zinc-100 dark:bg-zinc-900 border-none rounded-lg pl-9 pr-4 py-2 text-sm w-64 focus:ring-1 focus:ring-primary outline-none" placeholder="Search components..." type="text" />
-                        </div>
-                        <button className="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-600 dark:text-zinc-400">
-                            <span className="material-symbols-outlined">dark_mode</span>
-                        </button>
-                        <button className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all">Sign In</button>
-                    </div>
-                </div>
-            </header>
+
 
             <main className="max-w-[1400px] mx-auto px-4 sm:px-6 py-8">
                 {/* Breadcrumbs */}

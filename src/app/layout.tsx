@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 };
 
 import { ThemeProvider } from "@/components/theme-provider"
+import { Navbar } from "@/components/navbar"
+import { SmoothScroll } from "@/components/smooth-scroll"
 
 export default function RootLayout({
   children,
@@ -36,7 +38,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <SmoothScroll>
+            <Navbar />
+            <div className="pt-16">
+              {children}
+            </div>
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>

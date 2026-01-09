@@ -8,41 +8,7 @@ export default async function ComponentsPage() {
 
     return (
         <div className="min-h-screen bg-zinc-950 font-display text-zinc-100 antialiased selection:bg-primary/30">
-            <header className="sticky top-0 z-50 w-full border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
-                <div className="max-w-[1400px] mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-                    <div className="flex items-center gap-8">
-                        <Link className="flex items-center gap-2.5" href="/">
-                            <div className="size-8 bg-primary rounded flex items-center justify-center text-white">
-                                <span className="material-symbols-outlined text-xl">layers</span>
-                            </div>
-                            <span className="text-lg font-bold tracking-tight text-white">UI Foundry</span>
-                        </Link>
-                        <nav className="hidden md:flex items-center gap-6">
-                            <Link className="text-sm font-medium text-white hover:text-primary transition-colors" href="#">Components</Link>
-                            <Link className="text-sm font-medium text-zinc-400 hover:text-white transition-colors" href="#">Templates</Link>
-                            <Link className="text-sm font-medium text-zinc-400 hover:text-white transition-colors" href="#">Docs</Link>
-                            <Link className="text-sm font-medium text-zinc-400 hover:text-white transition-colors" href="#">Showcase</Link>
-                        </nav>
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <div className="hidden lg:block">
-                            <div className="relative group">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-zinc-500 group-focus-within:text-primary transition-colors">
-                                    <span className="material-symbols-outlined text-sm">search</span>
-                                </div>
-                                <input className="h-9 w-64 bg-zinc-900 border border-zinc-800 rounded px-9 text-xs text-white focus:ring-1 focus:ring-primary focus:border-primary transition-all placeholder:text-zinc-600 outline-none" placeholder="Search components... (Cmd+K)" type="text" />
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <button className="px-4 h-9 text-xs font-mono font-medium text-zinc-400 hover:text-white transition-colors">Sign In</button>
-                            <button className="px-4 h-9 text-xs font-mono font-medium bg-primary text-white hover:bg-primary/90 transition-colors rounded flex items-center gap-2">
-                                <span className="material-symbols-outlined text-sm">terminal</span>
-                                <span>CLI</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </header>
+
 
             <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex gap-8">
                 <aside className="hidden lg:block w-64 shrink-0 py-8 sticky top-16 h-[calc(100vh-64px)] overflow-y-auto custom-scrollbar">
