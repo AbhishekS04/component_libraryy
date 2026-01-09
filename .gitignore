@@ -45,3 +45,7 @@ UI_D
 # CLI
 cli/dist
 cli/node_modules
+
+
+# docs 
+CONTRIBUTING.md
