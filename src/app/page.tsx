@@ -1,5 +1,62 @@
+"use client"
+
+/* eslint-disable react/no-unescaped-entities */
 
 import Link from "next/link"
+import UseAnimations from "react-useanimations"
+import twitter from "react-useanimations/lib/twitter"
+
+type TwitterAnimationLinkProps = {
+  href?: string
+  className?: string
+  size?: number
+  ariaLabel?: string
+}
+
+function TwitterAnimationLink({
+  href = "https://twitter.com",
+  className,
+  size = 56,
+  ariaLabel = "Twitter",
+}: TwitterAnimationLinkProps) {
+  return (
+    <Link
+      className={`group inline-flex items-center justify-center rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background ${className ?? ""}`}
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={ariaLabel}
+    >
+      <span className="inline-flex items-center justify-center leading-none transition-transform duration-300 ease-out will-change-transform group-hover:scale-125 group-hover:-rotate-6 group-active:scale-110">
+        <UseAnimations
+          animation={twitter}
+          size={size}
+          strokeColor="currentColor"
+          fillColor="currentColor"
+        />
+      </span>
+    </Link>
+  )
+}
+
+type FooterSocialProps = {
+  twitterHref?: string
+  className?: string
+}
+
+function FooterSocial({
+  twitterHref = "https://twitter.com",
+  className,
+}: FooterSocialProps) {
+  return (
+    <TwitterAnimationLink
+      href={twitterHref}
+      ariaLabel="Twitter"
+      size={35}
+      className={className}
+    />
+  )
+}
 
 export default function Home() {
   return (
@@ -22,12 +79,12 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 mt-4">
               <Link href="/components">
-                <button className="flex items-center gap-2 h-12 px-8 bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all rounded-lg font-bold text-base">
+                <button className="flex items-center gap-2 h-12 px-8 bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all rounded-lg font-bold text-base cursor-pointer">
                   Browse Components
                   <span className="material-symbols-outlined !text-[20px]">arrow_forward</span>
                 </button>
               </Link>
-              <button className="flex items-center gap-2 h-12 px-8 bg-transparent text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all rounded-lg font-bold text-base">
+              <button className="flex items-center gap-2 h-12 px-8 bg-transparent text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all rounded-lg font-bold text-base cursor-pointer">
                 View on GitHub
               </button>
             </div>
@@ -85,7 +142,7 @@ export default function Home() {
               <p className="text-zinc-500 text-sm font-medium uppercase tracking-widest">Install with one command</p>
               <div className="flex items-center gap-2 p-1.5 pl-4 bg-zinc-900 border border-zinc-800 rounded-xl w-full max-w-md mx-auto">
                 <code className="text-zinc-300 text-sm font-mono flex-1 text-left">npx shadcn-ai add button</code>
-                <button className="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2">
+                <button className="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2 cursor-pointer">
                   <span className="material-symbols-outlined !text-[18px]">content_copy</span>
                   Copy
                 </button>
@@ -152,10 +209,10 @@ export default function Home() {
               Used by thousands of developers worldwide.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-4 relative z-10">
-              <button className="w-full sm:w-auto px-10 h-14 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-all text-lg">
+              <button className="w-full sm:w-auto px-10 h-14 bg-white text-black font-bold rounded-xl hover:bg-zinc-200 transition-all text-lg cursor-pointer">
                 Get Started Today
               </button>
-              <button className="w-full sm:w-auto px-10 h-14 bg-zinc-950 text-white border border-zinc-800 font-bold rounded-xl hover:bg-zinc-800 transition-all text-lg">
+              <button className="w-full sm:w-auto px-10 h-14 bg-zinc-950 text-white border border-zinc-800 font-bold rounded-xl hover:bg-zinc-800 transition-all text-lg cursor-pointer">
                 Read Documentation
               </button>
             </div>
@@ -210,10 +267,16 @@ export default function Home() {
               © 2024 Shadcn AI. All rights reserved. Built with passion for developers.
             </p>
             <div className="flex items-center gap-6">
-              <Link className="text-zinc-600 hover:text-zinc-900 dark:hover:text-white transition-colors" href="#"><span className="material-symbols-outlined">alternate_email</span></Link>
-              <Link className="text-zinc-600 hover:text-zinc-900 dark:hover:text-white transition-colors" href="#">
-                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.599 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+              <Link
+                className="group inline-flex items-center justify-center rounded-md text-zinc-600 hover:text-zinc-900 dark:hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                href="#"
+                aria-label="Email"
+              >
+                <span className="inline-flex items-center justify-center leading-none transition-transform duration-300 ease-out will-change-transform group-hover:scale-125 group-hover:-rotate-6 group-active:scale-110">
+                  <span className="material-symbols-outlined text-[35px] leading-none">alternate_email</span>
+                </span>
               </Link>
+              <FooterSocial className="text-zinc-600 hover:text-zinc-900 dark:hover:text-white transition-colors" />
             </div>
           </div>
         </div>

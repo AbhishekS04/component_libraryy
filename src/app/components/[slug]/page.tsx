@@ -69,7 +69,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
                         <p className="text-lg text-zinc-500 dark:text-zinc-400 max-w-2xl">A reusable component for your projects.</p>
                     </div>
                     <div className="flex items-center gap-3">
-                        <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-sm font-bold transition-all">
+                        <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-sm font-bold transition-all cursor-pointer">
                             <span className="material-symbols-outlined text-sm">star</span>
                             Star on GitHub
                         </button>

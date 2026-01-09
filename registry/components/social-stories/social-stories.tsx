@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useState, useEffect, useCallback, useRef, useSyncExternalStore } from "react"
 import { createPortal } from "react-dom"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowUpRight, X, Loader2 } from "lucide-react"
@@ -40,7 +40,12 @@ export function SocialStories({
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isPaused, setIsPaused] = useState(false)
     const [isMediaReady, setIsMediaReady] = useState(false)
-    const [mounted, setMounted] = useState(false)
+
+    const mounted = useSyncExternalStore(
+        () => () => { },
+        () => true,
+        () => false
+    )
 
     const activeProgressBarRef = useRef<HTMLDivElement | null>(null)
     const rafRef = useRef<number | null>(null)
@@ -53,11 +58,6 @@ export function SocialStories({
     const currentStory = stories[currentIndex]
     const currentIsVideo = isVideo(currentStory?.mediaUrl ?? "")
     const durationMs = ((currentStory?.duration ?? defaultDuration) as number) * 1000
-
-    // -- Hydration Fix --
-    useEffect(() => {
-        setMounted(true)
-    }, [])
 
     // -- Progress & Animation Logic --
     const setProgress = (value: number) => {
