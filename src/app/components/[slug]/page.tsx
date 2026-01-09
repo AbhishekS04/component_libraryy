@@ -8,6 +8,7 @@ import { ComponentPreview } from "@/components/component-preview"
 import { ComponentCodeViewer } from "@/components/component-code-viewer"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { CopyButton } from "@/components/copy-button"
+import { ClickablePrompt } from "@/components/clickable-prompt"
 import { codeToHtml } from 'shiki'
 
 interface ComponentPageProps {
@@ -50,9 +51,9 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
 
     return (
         <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-zinc-900 dark:text-zinc-100 transition-colors duration-200">
-            {/* Top Navigation Bar - Keeping local as per design */}
+            {/* Top Navigation Bar */}
             <header className="sticky top-0 z-50 w-full border-b border-zinc-200 dark:border-zinc-800 bg-background-light/80 dark:bg-zinc-950/80 backdrop-blur-md">
-                <div className="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+                <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
                     <div className="flex items-center gap-8">
                         <Link href="/" className="flex items-center gap-2 text-primary font-bold text-xl tracking-tight">
                             <div className="size-8 bg-primary rounded flex items-center justify-center text-white">
@@ -80,7 +81,7 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
                 </div>
             </header>
 
-            <main className="max-w-[1400px] mx-auto px-6 py-8">
+            <main className="max-w-[1400px] mx-auto px-4 sm:px-6 py-8">
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 mb-6 text-sm font-medium">
                     <Link className="text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors" href="/components">Components</Link>
@@ -122,71 +123,76 @@ export default async function ComponentPage({ params }: ComponentPageProps) {
                                 </div>
                             </div>
 
-                            <TabsContent value="preview" className="relative min-h-[400px] p-0 m-0 border-0">
-                                <div className="bg-zinc-50 dark:bg-[#0c0c0e] p-8 min-h-[400px] flex items-center justify-center bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:20px_20px]">
-                                    <ComponentPreview slug={component.slug} className="!min-h-[inherit] !border-none !bg-transparent" />
+                            <TabsContent value="preview" className="relative p-0 m-0 border-0 rounded-b-xl overflow-hidden">
+                                <div className="bg-zinc-50 dark:bg-black min-h-[400px] sm:min-h-[664px] flex items-center justify-center p-8 border border-zinc-200 dark:border-zinc-800 border-t-0 rounded-b-xl">
+                                    <ComponentPreview slug={component.slug} className="!min-h-0 !h-auto !border-none !bg-transparent !shadow-none !p-0 w-full h-full flex items-center justify-center" />
                                 </div>
                             </TabsContent>
 
-                            <TabsContent value="code" className="p-0 m-0 border-0 min-h-[400px]">
+                            <TabsContent value="code" className="p-0 m-0 border-0 min-h-[664px]">
                                 <ComponentCodeViewer files={codeFiles} />
                             </TabsContent>
                         </Tabs>
                     </div>
 
-                    {/* Right Sidebar: Installation & AI */}
+                    {/* Right Sidebar */}
                     <div className="lg:col-span-4 space-y-6">
-                        {/* CLI Installation */}
-                        <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-6 bg-white dark:bg-zinc-950 shadow-sm">
-                            <h3 className="text-sm font-bold mb-4 flex items-center gap-2 text-zinc-900 dark:text-white">
-                                <span className="material-symbols-outlined text-primary text-lg">terminal</span>
-                                Installation
-                            </h3>
-                            <div className="relative group">
-                                <div className="bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg p-3 pr-12 font-mono text-sm">
-                                    <span className="text-zinc-500 mr-2">$</span>
-                                    <span className="text-zinc-800 dark:text-zinc-200">npx ui-add {component.slug}</span>
+
+                        {/* Installation */}
+                        <div className="rounded-xl border border-zinc-800 bg-black overflow-hidden">
+                            <div className="p-4 border-b border-zinc-800 flex items-center gap-2">
+                                <div className="p-1.5 rounded-md bg-zinc-900 text-zinc-400">
+                                    <span className="material-symbols-outlined text-sm">terminal</span>
                                 </div>
-                                <CopyButton value={`npx ui-add ${component.slug}`} className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-md hover:bg-zinc-200 dark:hover:bg-zinc-800 text-zinc-500" />
+                                <h3 className="font-medium text-sm text-zinc-200">Installation</h3>
+                            </div>
+                            <div className="p-4">
+                                <div className="relative flex items-center justify-between gap-2 p-3 rounded-lg bg-zinc-900 border border-zinc-800/50 font-mono text-xs text-zinc-300">
+                                    <div className="flex bg-transparent w-full overflow-hidden">
+                                        <span className="text-zinc-600 mr-2 select-none">$</span>
+                                        <span>npx ui-add {component.slug}</span>
+                                    </div>
+                                    <CopyButton value={`npx ui-add ${component.slug}`} className="text-zinc-500 hover:text-white transition-colors" />
+                                </div>
                             </div>
                         </div>
 
-                        {/* AI Prompt Box */}
-                        <div className="rounded-xl border border-primary/30 bg-primary/5 p-6 relative overflow-hidden group shadow-[0_0_20px_rgba(60,131,246,0.05)]">
-                            <div className="flex items-center justify-between mb-4">
-                                <h3 className="text-sm font-bold text-primary flex items-center gap-2">
-                                    <span className="material-symbols-outlined text-lg">magic_button</span>
-                                    AI Prompt
-                                </h3>
-                                <CopyButton value={prompt} className="flex items-center gap-1.5 bg-primary hover:bg-primary/90 text-white px-3 py-1.5 rounded-md text-xs font-bold transition-all">
-                                    <span className="material-symbols-outlined text-sm">content_copy</span>
-                                    Copy
-                                </CopyButton>
+                        {/* AI Prompt */}
+                        <div className="rounded-xl border border-zinc-800 bg-black overflow-hidden">
+                            <div className="p-4 border-b border-zinc-800 flex items-center gap-2">
+                                <div className="p-1.5 rounded-md bg-zinc-900 text-zinc-400">
+                                    <span className="material-symbols-outlined text-sm">auto_awesome</span>
+                                </div>
+                                <h3 className="font-medium text-sm text-zinc-200">AI Prompt</h3>
                             </div>
-                            <div className="bg-white/50 dark:bg-zinc-900/50 border border-primary/20 rounded-lg p-3">
-                                <p className="text-xs font-mono text-zinc-600 dark:text-zinc-400 leading-relaxed italic line-clamp-3">
-                                    {prompt}
-                                </p>
+                            <div className="p-4">
+                                <ClickablePrompt value={prompt} />
                             </div>
                         </div>
 
-                        {/* Dependencies & Notes */}
-                        <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 p-6 bg-white dark:bg-zinc-950 shadow-sm space-y-6">
-                            <div>
-                                <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-3">Dependencies</h4>
+                        {/* Dependencies */}
+                        <div className="rounded-xl border border-zinc-800 bg-black overflow-hidden">
+                            <div className="p-4 border-b border-zinc-800 flex items-center gap-2">
+                                <div className="p-1.5 rounded-md bg-zinc-900 text-zinc-400">
+                                    <span className="material-symbols-outlined text-sm">deployed_code</span>
+                                </div>
+                                <h3 className="font-medium text-sm text-zinc-200">Dependencies</h3>
+                            </div>
+                            <div className="p-4">
                                 <div className="flex flex-wrap gap-2">
-                                    <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-medium text-zinc-600 dark:text-zinc-400">framer-motion</span>
-                                    <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-medium text-zinc-600 dark:text-zinc-400">lucide-react</span>
-                                    <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-xs font-medium text-zinc-600 dark:text-zinc-400">clsx</span>
+                                    {['framer-motion', 'lucide-react', 'clsx'].map(dep => (
+                                        <span key={dep} className="px-2.5 py-1 rounded-md bg-zinc-900 border border-zinc-800 text-[11px] font-medium text-zinc-400">
+                                            {dep}
+                                        </span>
+                                    ))}
                                 </div>
-                            </div>
-                            <hr className="border-zinc-200 dark:border-zinc-800" />
-                            <div>
-                                <h4 className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-3">Developer Notes</h4>
-                                <ul className="text-sm text-zinc-600 dark:text-zinc-400 space-y-2 list-disc pl-4">
-                                    <li>Supports SSR out of the box.</li>
-                                    <li>Configs are easy to customize.</li>
-                                </ul>
+                                <div className="mt-6">
+                                    <h4 className="text-[10px] uppercase tracking-wider font-bold text-zinc-600 mb-3">Notes</h4>
+                                    <ul className="text-xs text-zinc-500 space-y-2 list-disc pl-4 marker:text-zinc-700">
+                                        <li>Supports SSR out of the box.</li>
+                                        <li>Configs are easy to customize.</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

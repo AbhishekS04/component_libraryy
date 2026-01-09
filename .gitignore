@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+UI_D
+# CLI
+cli/dist
+cli/node_modules

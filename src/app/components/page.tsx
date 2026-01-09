@@ -1,6 +1,7 @@
 
 import { getAllComponents } from "@/../registry/lib/components"
 import Link from "next/link"
+import { ComponentPreview } from "@/components/component-preview"
 
 export default async function ComponentsPage() {
     const components = await getAllComponents()
@@ -147,22 +148,22 @@ export default async function ComponentsPage() {
                         {components.map((slug) => (
                             <Link key={slug} href={`/components/${slug}`}>
                                 <div className="group relative flex flex-col bg-zinc-900 border border-zinc-800 rounded overflow-hidden hover:border-zinc-600 transition-all duration-200">
-                                    <div className="h-48 bg-zinc-950 relative flex items-center justify-center border-b border-zinc-800">
-                                        <div className="w-4/5 h-2/3 bg-zinc-900 border border-zinc-800 p-4 flex flex-col gap-2">
-                                            <div className="h-1 w-1/2 bg-zinc-800 rounded"></div>
-                                            <div className="flex gap-2">
-                                                <div className="h-6 w-6 bg-zinc-800 rounded-full"></div>
-                                                <div className="flex-1 space-y-1">
-                                                    <div className="h-1 w-full bg-zinc-800 rounded"></div>
-                                                    <div className="h-1 w-2/3 bg-zinc-800 rounded"></div>
-                                                </div>
+                                    <div className="h-48 bg-zinc-950 relative flex items-center justify-center border-b border-zinc-800 overflow-hidden">
+                                        {/* Component Preview in Card */}
+                                        <div className="absolute inset-0 flex items-center justify-center p-4">
+                                            <div className="w-full h-full flex items-center justify-center pointer-events-none select-none scale-[0.8] origin-center">
+                                                <ComponentPreview
+                                                    slug={slug}
+                                                    className="!min-h-0 !h-auto !p-0 !border-none !bg-transparent w-full flex items-center justify-center"
+                                                />
                                             </div>
                                         </div>
+
+                                        {/* Hover Overlay */}
+                                        <div className="absolute inset-0 bg-zinc-950/0 group-hover:bg-zinc-950/10 transition-colors" />
+
                                         <div className="absolute inset-0 bg-zinc-950/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
-                                            <button className="px-3 py-1.5 bg-white text-zinc-950 text-[10px] font-mono font-bold rounded">Preview</button>
-                                            <button className="p-1.5 bg-zinc-900 border border-zinc-800 text-white rounded">
-                                                <span className="material-symbols-outlined text-sm">content_copy</span>
-                                            </button>
+                                            <button className="px-3 py-1.5 bg-white text-zinc-950 text-[10px] font-mono font-bold rounded pointer-events-none">Preview</button>
                                         </div>
                                     </div>
                                     <div className="p-4">

@@ -112,6 +112,39 @@
 }
 
 @layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #3f3f46;
+    border-radius: 5px;
+    border: 2px solid #0d1117;
+    /* Matches code bg for padding effect */
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #52525b;
+  }
+
   .bg-grid-small-black\/20 {
     background-size: 20px 20px;
     background-image: radial-gradient(circle, #000 1px, transparent 1px);
@@ -125,4 +158,15 @@
   .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
   }
+}
+
+/* Syntax Highlighting Overrides */
+pre.shiki {
+  background-color: transparent !important;
+  margin: 0;
+  padding: 0;
+}
+
+code {
+  font-family: var(--font-mono);
 }

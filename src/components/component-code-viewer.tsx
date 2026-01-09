@@ -15,41 +15,48 @@ interface ComponentCodeViewerProps {
 }
 
 export function ComponentCodeViewer({ files }: ComponentCodeViewerProps) {
-    // Sort logic? passing "demo.tsx" or "component.tsx" priority?
-    // For now, use order provided.
     const [activePath, setActivePath] = React.useState(files[0]?.path)
-
     const activeFile = files.find(f => f.path === activePath) || files[0]
 
     return (
-        <div className="flex flex-col h-full rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950">
-            <div className="flex items-center justify-between border-b border-zinc-800 bg-zinc-900/50 px-2 overflow-x-auto scrollbar-hide">
-                <div className="flex">
+        <div className="flex flex-col h-[664px] w-full rounded-b-xl overflow-hidden border border-t-0 border-zinc-800 bg-black">
+            {/* Minimal File Tabs Header */}
+            <div className="flex items-center justify-between border-b border-zinc-800 bg-black px-0">
+                <div className="flex overflow-x-auto scrollbar-hide">
                     {files.map((file) => (
                         <button
                             key={file.path}
                             onClick={() => setActivePath(file.path)}
                             className={cn(
-                                "relative px-4 py-3 text-xs font-medium transition-colors hover:text-zinc-100 whitespace-nowrap",
+                                "relative px-4 py-3 text-sm font-medium transition-all border-r border-zinc-800 outline-none focus-visible:ring-2 focus-visible:ring-primary/50 z-10",
                                 activePath === file.path
-                                    ? "text-primary after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:bg-primary"
-                                    : "text-zinc-500"
+                                    ? "text-zinc-100 bg-black after:absolute after:top-0 after:left-0 after:right-0 after:h-[2px] after:bg-primary"
+                                    : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900"
                             )}
                         >
                             {file.path}
                         </button>
                     ))}
                 </div>
+
                 {activeFile && (
-                    <CopyButton
-                        value={activeFile.content}
-                        className="ml-2 flex-shrink-0 text-zinc-500 hover:text-zinc-100"
-                    />
+                    <div className="px-3">
+                        <CopyButton
+                            value={activeFile.content}
+                            className="text-zinc-500 hover:text-zinc-100 transition-colors size-8"
+                        />
+                    </div>
                 )}
             </div>
-            <div className="relative flex-1 bg-zinc-950 overflow-hidden">
+
+            {/* Code Content */}
+            <div className="relative flex-1 overflow-hidden bg-black">
                 <div
-                    className="h-full overflow-auto p-4 text-sm font-mono leading-relaxed"
+                    className="h-full overflow-auto p-6 text-sm font-mono leading-relaxed custom-scrollbar"
+                    style={{
+                        scrollbarWidth: 'thin',
+                        scrollbarColor: '#3f3f46 transparent'
+                    }}
                     dangerouslySetInnerHTML={{ __html: activeFile?.highlighted || "" }}
                 />
             </div>
