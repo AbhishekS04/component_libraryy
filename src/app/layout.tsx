@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { SmoothScroll } from "@/components/smooth-scroll"
+import { MotionProvider } from "@/components/motion-provider"
 
 export default function RootLayout({
   children,
@@ -38,12 +39,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SmoothScroll>
-            <Navbar />
-            <div className="pt-16">
-              {children}
-            </div>
-          </SmoothScroll>
+          <MotionProvider>
+            <SmoothScroll>
+              <Navbar />
+              <div className="pt-16">
+                {children}
+              </div>
+            </SmoothScroll>
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>

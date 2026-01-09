@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useEffect, useCallback, useRef } from "react"
+import { useState, useEffect, useCallback, useRef, useSyncExternalStore } from "react"
 import { createPortal } from "react-dom"
-import { motion, AnimatePresence } from "framer-motion"
+import { m, AnimatePresence } from "framer-motion"
 import { ArrowUpRight, X, Loader2 } from "lucide-react"
 import Image from "next/image"
 
@@ -30,6 +30,16 @@ interface SocialStoriesProps {
 const isVideo = (url: string) =>
     /\.(mp4|webm|ogg)$/i.test(url) || url.includes("/video/")
 
+const useIsClient = () =>
+    useSyncExternalStore(
+        (onStoreChange) => {
+            const id = requestAnimationFrame(onStoreChange)
+            return () => cancelAnimationFrame(id)
+        },
+        () => true,
+        () => false
+    )
+
 export function SocialStories({
     stories = [],
     profile,
@@ -40,7 +50,7 @@ export function SocialStories({
     const [currentIndex, setCurrentIndex] = useState(0)
     const [isPaused, setIsPaused] = useState(false)
     const [isMediaReady, setIsMediaReady] = useState(false)
-    const [mounted, setMounted] = useState(false)
+    const mounted = useIsClient()
 
     const activeProgressBarRef = useRef<HTMLDivElement | null>(null)
     const rafRef = useRef<number | null>(null)
@@ -53,11 +63,6 @@ export function SocialStories({
     const currentStory = stories[currentIndex]
     const currentIsVideo = isVideo(currentStory?.mediaUrl ?? "")
     const durationMs = ((currentStory?.duration ?? defaultDuration) as number) * 1000
-
-    // -- Hydration Fix --
-    useEffect(() => {
-        setMounted(true)
-    }, [])
 
     // -- Progress & Animation Logic --
     const setProgress = (value: number) => {
@@ -178,7 +183,7 @@ export function SocialStories({
                 <div className={`${embedded ? "absolute" : "fixed"} inset-0 ${embedded ? "z-[50]" : "z-[9999]"} flex items-center justify-center pointer-events-auto`}>
 
                     {/* Backdrop Blur */}
-                    <motion.div
+                    <m.div
                         className="absolute inset-0 bg-black/80 backdrop-blur-xl"
                         onClick={() => setIsOpen(false)}
                         initial={{ opacity: 0 }}
@@ -190,7 +195,7 @@ export function SocialStories({
                     {/* 
               THE CARD 
             */}
-                    <motion.div
+                                        <m.div
                         layoutId="story-card-modal"
                         initial={{ opacity: 0, scale: 0.9, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -323,7 +328,7 @@ export function SocialStories({
                                 )}
                             </div>
                         </div>
-                    </motion.div>
+                    </m.div>
                 </div>
             )}
         </AnimatePresence>
@@ -333,7 +338,7 @@ export function SocialStories({
         <>
             <div className="relative w-12 h-12 sm:w-16 sm:h-16 cursor-pointer z-10">
                 {!isOpen && (
-                    <motion.div
+                    <m.div
                         layoutId="story-trigger"
                         onClick={() => setIsOpen(true)}
                         className="absolute inset-0 rounded-full p-[4px]"
@@ -353,7 +358,7 @@ export function SocialStories({
                                 priority
                             />
                         </div>
-                    </motion.div>
+                    </m.div>
                 )}
             </div>
 
