@@ -52,6 +52,7 @@ export function ComponentCodeViewer({ files }: ComponentCodeViewerProps) {
             {/* Code Content */}
             <div className="relative flex-1 overflow-hidden bg-black">
                 <div
+                    data-lenis-prevent
                     className="h-full overflow-auto p-6 text-sm font-mono leading-relaxed custom-scrollbar"
                     style={{
                         scrollbarWidth: 'thin',

@@ -12,14 +12,27 @@ export interface Component {
     slug: string
     name: string
     files: ComponentFile[]
+    date: string
 }
 
-export async function getAllComponents(): Promise<string[]> {
+export async function getAllComponents(): Promise<{ slug: string, date: string }[]> {
     if (!fs.existsSync(COMPONENTS_DIR)) {
         return []
     }
     const items = await fs.promises.readdir(COMPONENTS_DIR)
-    return items.filter(item => !item.startsWith('.'))
+    const components = await Promise.all(
+        items
+            .filter(item => !item.startsWith('.'))
+            .map(async (slug) => {
+                const componentPath = path.join(COMPONENTS_DIR, slug)
+                const stat = await fs.promises.stat(componentPath)
+                return {
+                    slug,
+                    date: stat.birthtime.toISOString()
+                }
+            })
+    )
+    return components.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 }
 
 export async function getComponent(slug: string): Promise<Component | null> {
@@ -43,13 +56,11 @@ export async function getComponent(slug: string): Promise<Component | null> {
         })
     }
 
-    // If it was a directory, slug is the dir name. If file, slug is filename without extension (handled by caller typically, or we normalize here) 
-    // For simplicity, we assume components are directories or files. 
-
     return {
         slug,
-        name: slug, // TODO: improve naming strategy
-        files
+        name: slug,
+        files,
+        date: stat.birthtime.toISOString()
     }
 }
 
