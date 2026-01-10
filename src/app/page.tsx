@@ -61,7 +61,9 @@ function FooterSocial({
 export default function Home() {
   return (
     <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-zinc-950 dark:text-white selection:bg-primary/30">
-      <main className="relative pt-16 bg-[radial-gradient(#27272a_1px,transparent_1px)] [background-size:24px_24px] dark:bg-[radial-gradient(#27272a_1px,transparent_1px)]">
+      <main
+        className="relative pt-16 bg-[radial-gradient(#27272a_1px,transparent_1px)] bg-size-[24px_24px] dark:bg-[radial-gradient(#27272a_1px,transparent_1px)]"
+      >
         {/* Hero Section */}
         <section className="max-w-7xl mx-auto px-6 pt-24 pb-20 relative">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-primary/5 blur-[120px] rounded-full -z-10"></div>
@@ -79,9 +81,9 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 mt-4">
               <Link href="/components">
-                <button className="flex items-center gap-2 h-12 px-8 bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all transition-transform duration-150 ease-out will-change-transform active:scale-95 active:translate-y-[1px] rounded-lg font-bold text-base cursor-pointer">
+                <button className="flex items-center gap-2 h-12 px-8 bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition duration-150 ease-out will-change-transform active:scale-95 active:translate-y-px rounded-lg font-bold text-base cursor-pointer">
                   Browse Components
-                  <span className="material-symbols-outlined !text-[20px]">arrow_forward</span>
+                  <span className="material-symbols-outlined text-[20px]!">arrow_forward</span>
                 </button>
               </Link>
               <button className="flex items-center gap-2 h-12 px-8 bg-transparent text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all rounded-lg font-bold text-base cursor-pointer">
@@ -148,7 +150,7 @@ export default function Home() {
                   }}
                   className="bg-primary hover:bg-primary/90 text-white px-4 py-1.5 rounded-lg text-sm font-bold transition-all flex items-center gap-2 cursor-pointer"
                 >
-                  <span className="material-symbols-outlined !text-[18px]">content_copy</span>
+                  <span className="material-symbols-outlined text-[18px]!">content_copy</span>
                   Copy
                 </button>
               </div>
@@ -162,7 +164,7 @@ export default function Home() {
             {/* Feature 1 */}
             <div className="group p-8 bg-zinc-900/40 border border-zinc-800 hover:border-primary/50 rounded-2xl transition-all duration-300">
               <div className="size-12 rounded-xl bg-zinc-800 flex items-center justify-center text-white mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-                <span className="material-symbols-outlined !text-[28px]">terminal</span>
+                <span className="material-symbols-outlined text-[28px]!">terminal</span>
               </div>
               <h3 className="text-white text-xl font-bold mb-3">Native CLI</h3>
               <p className="text-zinc-400 leading-relaxed mb-6">
@@ -175,7 +177,7 @@ export default function Home() {
             {/* Feature 2 */}
             <div className="group p-8 bg-zinc-900/40 border border-zinc-800 hover:border-primary/50 rounded-2xl transition-all duration-300">
               <div className="size-12 rounded-xl bg-zinc-800 flex items-center justify-center text-white mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-                <span className="material-symbols-outlined !text-[28px]">lock_open</span>
+                <span className="material-symbols-outlined text-[28px]!">lock_open</span>
               </div>
               <h3 className="text-white text-xl font-bold mb-3">Zero Lock-in</h3>
               <p className="text-zinc-400 leading-relaxed mb-6">
@@ -188,7 +190,7 @@ export default function Home() {
             {/* Feature 3 */}
             <div className="group p-8 bg-zinc-900/40 border border-zinc-800 hover:border-primary/50 rounded-2xl transition-all duration-300">
               <div className="size-12 rounded-xl bg-zinc-800 flex items-center justify-center text-white mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-                <span className="material-symbols-outlined !text-[28px]">auto_awesome</span>
+                <span className="material-symbols-outlined text-[28px]!">auto_awesome</span>
               </div>
               <h3 className="text-white text-xl font-bold mb-3">AI-Optimized</h3>
               <p className="text-zinc-400 leading-relaxed mb-6">
@@ -232,7 +234,7 @@ export default function Home() {
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2 text-zinc-900 dark:text-white mb-6">
                 <div className="size-6 bg-primary rounded flex items-center justify-center text-white">
-                  <span className="material-symbols-outlined !text-[16px]">deployed_code</span>
+                  <span className="material-symbols-outlined text-[16px]!">deployed_code</span>
                 </div>
                 <span className="text-lg font-bold">Shadcn AI</span>
               </div>

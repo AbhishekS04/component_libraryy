@@ -46,7 +46,7 @@ export default function SocialStoriesDemo() {
     )
 
     return (
-        <div className="w-full h-[600px] flex items-center justify-center bg-transparent antialiased relative">
+        <div className="w-full h-150 flex items-center justify-center bg-transparent antialiased relative">
             <SocialStories stories={stories} profile={profile} embedded={true} />
         </div>
     )

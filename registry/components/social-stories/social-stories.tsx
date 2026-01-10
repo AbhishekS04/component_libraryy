@@ -179,7 +179,7 @@ export function SocialStories({
     const StoryModal = (
         <AnimatePresence>
             {isOpen && currentStory && (
-                <div className={`${embedded ? "absolute" : "fixed"} inset-0 ${embedded ? "z-[50]" : "z-[9999]"} flex items-center justify-center pointer-events-auto`}>
+                <div className={`${embedded ? "absolute" : "fixed"} inset-0 ${embedded ? "z-50" : "z-9999"} flex items-center justify-center pointer-events-auto`}>
 
                     {/* Backdrop Blur */}
                     <m.div
@@ -208,9 +208,9 @@ export function SocialStories({
                 shadow-2xl
                 border border-white/10
                 flex flex-col
-                ${embedded
-                                ? "h-[90%] w-auto aspect-[9/16] max-w-full mx-auto"
-                                : "w-[90vw] h-auto aspect-[9/16] max-h-[85vh] max-w-[420px]"
+                            ${embedded
+                                ? "h-[90%] w-auto aspect-9/16 max-w-full mx-auto"
+                                : "w-[90vw] h-auto aspect-9/16 max-h-[85vh] max-w-105"
                             }
               `}
                     >
@@ -258,12 +258,12 @@ export function SocialStories({
                             </div>
 
                             {/* Readability Gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/80 pointer-events-none" />
+                            <div className="absolute inset-0 bg-linear-to-b from-black/50 via-transparent to-black/80 pointer-events-none" />
 
                             {/* Top Progress Bars */}
                             <div className="absolute top-4 left-4 right-4 flex gap-1.5 z-20">
                                 {stories.map((_, i) => (
-                                    <div key={i} className="h-[2px] flex-1 bg-white/30 rounded-full overflow-hidden">
+                                    <div key={i} className="h-0.5 flex-1 bg-white/30 rounded-full overflow-hidden">
                                         <div
                                             ref={i === currentIndex ? activeProgressBarRef : null}
                                             className="h-full bg-white origin-left"
@@ -320,7 +320,7 @@ export function SocialStories({
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         onClick={(e) => e.stopPropagation()}
-                                        className="flex-shrink-0 flex items-center justify-center w-11 h-11 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/10 transition-all hover:scale-105"
+                                        className="shrink-0 flex items-center justify-center w-11 h-11 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md border border-white/10 transition-all hover:scale-105"
                                     >
                                         <ArrowUpRight className="w-5 h-5 text-white" />
                                     </a>
@@ -340,7 +340,7 @@ export function SocialStories({
                     <m.div
                         layoutId="story-trigger"
                         onClick={() => setIsOpen(true)}
-                        className="absolute inset-0 rounded-full p-[4px]"
+                        className="absolute inset-0 rounded-full p-1"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
@@ -348,7 +348,7 @@ export function SocialStories({
                         <div className="absolute inset-0 rounded-full border-[3px] border-yellow-500 shadow-[0_0_15px_rgba(234,179,8,0.5)]" />
 
                         {/* Avatar Image */}
-                        <div className="absolute inset-[6px] rounded-full overflow-hidden bg-zinc-800 ring-2 ring-black">
+                        <div className="absolute inset-1.5 rounded-full overflow-hidden bg-zinc-800 ring-2 ring-black">
                             <Image
                                 src={profile.avatarUrl}
                                 alt={profile.name}
