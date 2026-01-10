@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { AnimatePresence, m, useReducedMotion } from "framer-motion"
+import { useLenis } from "lenis/react"
 import { Command as CommandIcon, Search, X } from "lucide-react"
 import { useRouter } from "next/navigation"
 
@@ -26,6 +27,7 @@ const EASE_OUT_QUINT: [number, number, number, number] = [0.22, 1, 0.36, 1]
 export function NavbarSearch() {
     const reducedMotion = useReducedMotion()
     const router = useRouter()
+    const lenis = useLenis()
 
     const [open, setOpen] = React.useState(false)
     const [query, setQuery] = React.useState("")
@@ -77,11 +79,36 @@ export function NavbarSearch() {
     React.useEffect(() => {
         if (!open) return
         const prev = document.body.style.overflow
+        const prevHtmlOverflow = document.documentElement.style.overflow
+        const prevBodyPosition = document.body.style.position
+        const prevBodyTop = document.body.style.top
+        const prevBodyWidth = document.body.style.width
+
+        const scrollY = window.scrollY
+
+        // Pause Lenis smooth scrolling (it can keep scrolling even when body overflow is hidden)
+        lenis?.stop()
+
+        // Robust scroll lock: freeze body at current scroll position
+        document.documentElement.style.overflow = "hidden"
         document.body.style.overflow = "hidden"
+        document.body.style.position = "fixed"
+        document.body.style.top = `-${scrollY}px`
+        document.body.style.width = "100%"
+
         return () => {
+            document.documentElement.style.overflow = prevHtmlOverflow
             document.body.style.overflow = prev
+            document.body.style.position = prevBodyPosition
+            document.body.style.top = prevBodyTop
+            document.body.style.width = prevBodyWidth
+
+            // Restore scroll position
+            window.scrollTo(0, scrollY)
+
+            lenis?.start()
         }
-    }, [open])
+    }, [lenis, open])
 
     React.useEffect(() => {
         const onKeyDown = (event: KeyboardEvent) => {
@@ -175,6 +202,7 @@ export function NavbarSearch() {
                                 "relative",
                                 "mx-auto mt-20",
                                 "w-[min(700px,calc(100vw-2rem))]",
+                                "max-h-[calc(100vh-8rem)]",
                                 "overflow-hidden",
                                 "rounded-2xl",
                                 "border border-border",
@@ -200,7 +228,8 @@ export function NavbarSearch() {
                             }
                             onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="flex items-center gap-3 px-4 py-3">
+                            <div className="flex flex-col">
+                                <div className="flex items-center gap-3 px-4 py-3">
                                 <Search className="h-5 w-5 text-muted-foreground" />
                                 <input
                                     ref={inputRef}
@@ -229,9 +258,9 @@ export function NavbarSearch() {
                                 >
                                     <X className="h-5 w-5" />
                                 </button>
-                            </div>
+                                </div>
 
-                            <div className="px-4 pb-4">
+                                <div className="flex-1 overflow-y-auto overscroll-contain px-4 pb-4">
                                 {/* <div className="px-1 pb-2 text-sm font-medium text-muted-foreground">Navigation</div> */}
                                 <div className="space-y-2">
                                     {filtered.length === 0 ? (
@@ -261,6 +290,7 @@ export function NavbarSearch() {
                                         })
                                     )}
                                 </div>
+                            </div>
                             </div>
                         </m.div>
                     </m.div>
