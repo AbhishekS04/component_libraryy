@@ -108,7 +108,7 @@ export function ComponentsDisplay({ components, selectedCategory }: ComponentsDi
                         <span className="material-symbols-outlined text-3xl text-zinc-500">search_off</span>
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">No components found</h3>
-                    <p className="text-zinc-500 max-w-sm">No components found in the "{selectedCategory}" category.</p>
+                    <p className="text-zinc-500 max-w-sm">No components found in the &quot;{selectedCategory}&quot; category.</p>
                     <Link href="/components" className="mt-6 px-4 py-2 bg-zinc-100 hover:bg-white text-black font-bold text-sm rounded transition-colors">
                         View All Components
                     </Link>

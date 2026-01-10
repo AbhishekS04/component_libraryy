@@ -18,9 +18,12 @@ async function main() {
     console.log(`📦 Fetching ${componentName} from UI Forge Registry...`);
 
     try {
-        // Determine fetch implementation (native in Node 18+ or polyfill)
-        const fetchFn = (globalThis as any).fetch || require('node-fetch');
-        const res = await fetchFn(`${REGISTRY_BASE_URL}/${componentName}`);
+        if (!globalThis.fetch) {
+            console.error('❌ This CLI requires Node.js 18+ (global fetch).');
+            process.exit(1);
+        }
+
+        const res = await globalThis.fetch(`${REGISTRY_BASE_URL}/${componentName}`);
 
         if (!res.ok) {
             console.error(`❌ Failed to fetch component: ${res.statusText}`);
@@ -30,7 +33,11 @@ async function main() {
             process.exit(1);
         }
 
-        const data = await res.json();
+        const data: {
+            name: string
+            files: { path: string; content: string }[]
+            dependencies: string[]
+        } = await res.json();
 
         // Determine target directory
         // We assume we are running in the user's project root

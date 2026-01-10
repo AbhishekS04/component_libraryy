@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { Check, Copy } from "lucide-react"
-import { cn } from "@/lib/utils"
 
 interface ClickablePromptProps {
     value: string

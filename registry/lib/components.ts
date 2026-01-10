@@ -43,7 +43,7 @@ export async function getAllComponents(): Promise<{ slug: string, date: string, 
                         const metaContent = await fs.promises.readFile(metaPath, "utf-8")
                         const meta = JSON.parse(metaContent)
                         category = meta.category
-                    } catch (e) {
+                    } catch {
                         // ignore error
                     }
                 }

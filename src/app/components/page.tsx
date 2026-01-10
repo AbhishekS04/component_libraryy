@@ -1,7 +1,6 @@
 
 import { getAllComponents } from "@/../registry/lib/components"
 import Link from "next/link"
-import { ComponentPreview } from "@/components/component-preview"
 import { ComponentsDisplay } from "@/components/components-display"
 
 
@@ -42,7 +41,7 @@ export default async function ComponentsPage(props: PageProps) {
         <div className="min-h-screen bg-zinc-950 font-display text-zinc-100 antialiased selection:bg-primary/30">
 
 
-            <div className="max-w-[1400px] mx-auto px-4 md:px-8 flex gap-8">
+            <div className="max-w-350 mx-auto px-4 md:px-8 flex gap-8">
                 <aside className="hidden lg:block w-64 shrink-0 py-8 sticky top-16 h-[calc(100vh-64px)] overflow-y-auto custom-scrollbar">
                     <div className="space-y-8">
                         <div>
