@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, useSyncExternalStore } from "react"
 import { createPortal } from "react-dom"
-import { motion, AnimatePresence } from "framer-motion"
+import { m, AnimatePresence } from "framer-motion"
 import { ArrowUpRight, X, Loader2 } from "lucide-react"
 import Image from "next/image"
 
@@ -165,7 +165,11 @@ export function SocialStories({
     const handleTap = (e: React.MouseEvent<HTMLDivElement>) => {
         if ((e.target as HTMLElement).closest("button, a")) return
         const { width } = e.currentTarget.getBoundingClientRect()
-        e.nativeEvent.offsetX < width / 3 ? goPrev() : goNext()
+        if (e.nativeEvent.offsetX < width / 3) {
+            goPrev()
+        } else {
+            goNext()
+        }
     }
 
     // Prevent SSR issues
@@ -178,7 +182,7 @@ export function SocialStories({
                 <div className={`${embedded ? "absolute" : "fixed"} inset-0 ${embedded ? "z-[50]" : "z-[9999]"} flex items-center justify-center pointer-events-auto`}>
 
                     {/* Backdrop Blur */}
-                    <motion.div
+                    <m.div
                         className="absolute inset-0 bg-black/80 backdrop-blur-xl"
                         onClick={() => setIsOpen(false)}
                         initial={{ opacity: 0 }}
@@ -190,7 +194,7 @@ export function SocialStories({
                     {/* 
               THE CARD 
             */}
-                    <motion.div
+                    <m.div
                         layoutId="story-card-modal"
                         initial={{ opacity: 0, scale: 0.9, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -323,7 +327,7 @@ export function SocialStories({
                                 )}
                             </div>
                         </div>
-                    </motion.div>
+                    </m.div>
                 </div>
             )}
         </AnimatePresence>
@@ -333,7 +337,7 @@ export function SocialStories({
         <>
             <div className="relative w-12 h-12 sm:w-16 sm:h-16 cursor-pointer z-10">
                 {!isOpen && (
-                    <motion.div
+                    <m.div
                         layoutId="story-trigger"
                         onClick={() => setIsOpen(true)}
                         className="absolute inset-0 rounded-full p-[4px]"
@@ -353,7 +357,7 @@ export function SocialStories({
                                 priority
                             />
                         </div>
-                    </motion.div>
+                    </m.div>
                 )}
             </div>
 

@@ -79,7 +79,7 @@ export default function Home() {
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4 mt-4">
               <Link href="/components">
-                <button className="flex items-center gap-2 h-12 px-8 bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all rounded-lg font-bold text-base cursor-pointer">
+                <button className="flex items-center gap-2 h-12 px-8 bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all transition-transform duration-150 ease-out will-change-transform active:scale-95 active:translate-y-[1px] rounded-lg font-bold text-base cursor-pointer">
                   Browse Components
                   <span className="material-symbols-outlined !text-[20px]">arrow_forward</span>
                 </button>
