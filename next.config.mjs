@@ -1,16 +1,15 @@
-import type { NextConfig } from "next";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 
-const projectRoot = dirname(fileURLToPath(import.meta.url));
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   turbopack: {
-    // Avoid Next.js inferring the wrong workspace root (e.g. a parent folder).
+    // Prevent Next.js from inferring the wrong workspace root (e.g. a parent directory).
     // Using the config file location is more stable than process.cwd() on Windows/OneDrive.
-    root: projectRoot,
+    root: __dirname,
   },
-  /* config options here */
   images: {
     remotePatterns: [
       {
